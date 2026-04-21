@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SmartHomeHub — Умный дом для каждого</title>
+    <meta name="description" content="Обзоры, рейтинги и сравнения лучших устройств для умного дома. Энергоэффективность, безопасность, комфорт.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f4f7fc;
+            color: #1a2c3e;
+            line-height: 1.4;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: #0f2c3b;
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            background: linear-gradient(135deg, #FFFFFF, #9ad0f5);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .logo span {
+            color: #6bc6ff;
+            background: none;
+        }
+        .nav a {
+            color: #e0f0f8;
+            text-decoration: none;
+            margin-left: 28px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .nav a:hover {
+            color: #ffd966;
+        }
+
+        .hero {
+            background: linear-gradient(105deg, #e2f0f7 0%, #c9e2f0 100%);
+            padding: 60px 0 50px;
+            border-bottom: 1px solid #cbdbe2;
+        }
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .hero-text {
+            flex: 1.2;
+        }
+        .hero-text h1 {
+            font-size: 2.7rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #0a2a36;
+        }
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #1f4b5e;
+        }
+        .btn {
+            display: inline-block;
+            background: #f5a623;
+            color: #1e2f3a;
+            font-weight: 700;
+            padding: 12px 32px;
+            border-radius: 40px;
+            text-decoration: none;
+            transition: 0.2s;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+        }
+        .btn:hover {
+            background: #e69500;
+            transform: translateY(-2px);
+        }
+        .hero-stats {
+            flex: 0.8;
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(8px);
+            padding: 25px;
+            border-radius: 36px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #0f2c3b;
+        }
+
+        .section {
+            padding: 60px 0;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .section-sub {
+            text-align: center;
+            color: #4a6272;
+            margin-bottom: 45px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+            transition: all 0.25s;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.15);
+        }
+        .card-img {
+            background: #f0f4f8;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        .card-content {
+            padding: 22px 20px 25px;
+            flex-grow: 1;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .card-desc {
+            color: #3e5a6c;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        .price {
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: #2c6e9e;
+            margin: 15px 0 12px;
+        }
+        .aff-link {
+            background: #1f6e43;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 44px;
+            text-decoration: none;
+            font-weight: 600;
+            display: block;
+            transition: 0.2s;
+            margin-top: 10px;
+        }
+        .aff-link:hover {
+            background: #0f5536;
+        }
+
+        .features-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .feature-item {
+            background: white;
+            padding: 28px 24px;
+            border-radius: 32px;
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.03);
+        }
+        .feature-icon {
+            font-size: 2.8rem;
+            margin-bottom: 16px;
+        }
+
+        .form-box {
+            background: #e6f0f6;
+            border-radius: 48px;
+            padding: 45px 35px;
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .form-group input {
+            flex: 2;
+            min-width: 220px;
+            padding: 14px 20px;
+            border-radius: 48px;
+            border: 1px solid #cbdbe2;
+            font-size: 1rem;
+        }
+        .form-group button {
+            background: #0f2c3b;
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 48px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        footer {
+            background: #0f2c3b;
+            color: #bcd3e2;
+            padding: 35px 0;
+            text-align: center;
+        }
+
+        @media (max-width: 750px) {
+            .hero-text h1 { font-size: 2rem; }
+            .header-inner { flex-direction: column; }
+            .nav a { margin: 0 12px; }
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="container header-inner">
+        <div class="logo">🏠 SmartHome<span>Hub</span></div>
+        <div class="nav">
+            <a href="#">Обзоры</a>
+            <a href="#">Рейтинги</a>
+            <a href="#">Блог</a>
+            <a href="#">Контакты</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <h1>Умный дом, который окупается</h1>
+                <p>Энергоэффективность, безопасность и комфорт. Честные обзоры лучших гаджетов 2026.</p>
+                <a href="#products" class="btn">👉 Смотреть топ-гаджеты</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-number">-37%</div>
+                <p>средняя экономия на счетах за свет</p>
+                <div class="stat-number" style="margin-top: 20px;">150+</div>
+                <p>устройств протестировано</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="section">
+        <div class="container">
+            <h2 class="section-title">⚡ Хиты продаж — умный дом 2026</h2>
+            <div class="section-sub">Выбирайте, сравнивайте, переходите по партнерским ссылкам — покупайте с кэшбэком до 15%</div>
+            <div class="cards-grid">
+                <!-- Товар 1 - Умное кольцо (Ozon) -->
+                <div class="product-card">
+                    <div class="card-img">💍🔋</div>
+                    <div class="card-content">
+                        <div class="card-title">Умное кольцо UltraRing 3</div>
+                        <div class="card-desc">Отслеживание энергии, сон, активность. Управляет техникой жестом. До 12 дней без подзарядки.</div>
+                        <div class="price">~ 14 990 ₽</div>
+                        <!-- ⚠️ ЗАМЕНИТЕ ССЫЛКУ НА ВАШУ ПАРТНЁРСКУЮ -->
+                        <a href="https://www.ozon.ru/product/umnoe-koltso-ultraring-3-123456789/?utm_source=smarthomehub" class="aff-link" rel="sponsored nofollow" target="_blank">🔥 Узнать цену на Ozon</a>
+                    </div>
+                </div>
+                <!-- Товар 2 - Робопылесос (Яндекс.Маркет) -->
+                <div class="product-card">
+                    <div class="card-img">🤖🧹</div>
+                    <div class="card-content">
+                        <div class="card-title">Робопылесос RoboClean X10</div>
+                        <div class="card-desc">Лазерный LiDAR, самоочистка, карта помещений. Управление голосом + Алиса.</div>
+                        <div class="price">~ 32 990 ₽</div>
+                        <!-- ⚠️ ЗАМЕНИТЕ ССЫЛКУ НА ВАШУ ПАРТНЁРСКУЮ -->
+                        <a href="https://market.yandex.ru/product/roboclean-x10-987654321?clid=703&pp=900&distr_type=7" class="aff-link" rel="sponsored nofollow" target="_blank">⚡ Сравнить цены на Яндекс.Маркет</a>
+                    </div>
+                </div>
+                <!-- Товар 3 - Смарт-розетка (Wildberries) -->
+                <div class="product-card">
+                    <div class="card-img">🔌⚡</div>
+                    <div class="card-content">
+                        <div class="card-title">Смарт-розетка EcoPlug Pro</div>
+                        <div class="card-desc">Контроль энергопотребления, таймер, защита от скачков. Снижает счета до 25%.</div>
+                        <div class="price">~ 2 290 ₽ (комплект 2 шт)</div>
+                        <!-- ⚠️ ЗАМЕНИТЕ ССЫЛКУ НА ВАШУ ПАРТНЁРСКУЮ -->
+                        <a href="https://www.wildberries.ru/catalog/123456789/detail.aspx?targetUrl=XS&utm_source=smarthomehub" class="aff-link" rel="sponsored nofollow" target="_blank">🎯 Забрать со скидкой на WB</a>
+                    </div>
+                </div>
+                <!-- Товар 4 - Климат-контроль (Ozon) -->
+                <div class="product-card">
+                    <div class="card-img">🌡️🌿</div>
+                    <div class="card-content">
+                        <div class="card-title">Климат-контроль AirHome</div>
+                        <div class="card-desc">Увлажнение, очистка, датчик CO2. Автоматические сценарии с Алисой.</div>
+                        <div class="price">~ 21 500 ₽</div>
+                        <!-- ⚠️ ЗАМЕНИТЕ ССЫЛКУ НА ВАШУ ПАРТНЁРСКУЮ -->
+                        <a href="https://www.ozon.ru/product/airhome-klimat-kontrol-456789123/?utm_source=smarthomehub" class="aff-link" rel="sponsored nofollow" target="_blank">🍃 Выбрать модель на Ozon</a>
+                    </div>
+                </div>
+                <!-- Товар 5 - Камера (Ситилинк) -->
+                <div class="product-card">
+                    <div class="card-img">📹🔒</div>
+                    <div class="card-content">
+                        <div class="card-title">Камера SafeCam 360°</div>
+                        <div class="card-desc">ИИ-детекция людей, двусторонняя связь, облачное хранение.</div>
+                        <div class="price">~ 6 790 ₽</div>
+                        <!-- ⚠️ ЗАМЕНИТЕ ССЫЛКУ НА ВАШУ ПАРТНЁРСКУЮ -->
+                        <a href="https://www.citilink.ru/product/safecam-360-789456123/?utm_source=smarthomehub" class="aff-link" rel="sponsored nofollow" target="_blank">📹 Смотреть на Ситилинк</a>
+                    </div>
+                </div>
+                <!-- Товар 6 - Умный замок (Wildberries) -->
+                <div class="product-card">
+                    <div class="card-img">🔑🚪</div>
+                    <div class="card-content">
+                        <div class="card-title">Умный замок SmartLock Pro</div>
+                        <div class="card-desc">Отпечаток, код, доступ по Bluetooth. Лог открытий.</div>
+                        <div class="price">~ 11 490 ₽</div>
+                        <!-- ⚠️ ЗАМЕНИТЕ ССЫЛКУ НА ВАШУ ПАРТНЁРСКУЮ -->
+                        <a href="https://www.wildberries.ru/catalog/987654321/detail.aspx?targetUrl=XS&utm_source=smarthomehub" class="aff-link" rel="sponsored nofollow" target="_blank">🔒 Лучшая цена на WB</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: #eaf3f9;">
+        <div class="container">
+            <h2 class="section-title">Почему SmartHomeHub?</h2>
+            <div class="features-grid">
+                <div class="feature-item"><div class="feature-icon">✅</div><h3>Реальные тесты</h3><p>Каждый гаджет проверяем минимум 2 недели.</p></div>
+                <div class="feature-item"><div class="feature-icon">💰</div><h3>Экономия до 40%</h3><p>Только проверенные партнерские предложения.</p></div>
+                <div class="feature-item"><div class="feature-icon">📊</div><h3>Сравнение цен</h3><p>Показываем лучшие офферы Ozon, WB, Яндекс.Маркет.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Дополнительный блок со ссылками на маркетплейсы -->
+    <section class="section">
+        <div class="container">
+            <div style="text-align: center; padding: 30px; background: white; border-radius: 48px; box-shadow: 0 8px 20px rgba(0,0,0,0.05);">
+                <h3 style="font-size: 1.8rem; margin-bottom: 20px;">🛍️ Покупайте на проверенных маркетплейсах</h3>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <!-- ⚠️ ЗАМЕНИТЕ ССЫЛКИ НА ВАШИ ПАРТНЁРСКИЕ (главные страницы или категории) -->
+                    <a href="https://www.ozon.ru/?__rr=1&abt_att=1&origin_referer=yandex.ru" class="btn" style="background: #005BFF; color: white;">🟢 Ozon</a>
+                    <a href="https://www.wildberries.ru/" class="btn" style="background: #6A1B9A; color: white;">🟣 Wildberries</a>
+                    <a href="https://market.yandex.ru/?utm_source_service=suggest&src_pof=901&icookie=6WesMa4Gdoc3FWn9omy9zThayQsr06OvKbSoc04cTwDumeF5w/ls6NPWXWYrn9O44SXqf71YmE5y7s3xYo+tnMI4JDM=&wprid=530119939324651035210279180243" class="btn" style="background: #FFCC00; color: #1a2c3e;">🟡 Яндекс.Маркет</a>
+                    <a href="https://www.citilink.ru/" class="btn" style="background: #00A651; color: white;">🟢 Ситилинк</a>
+                </div>
+                <p style="margin-top: 20px; font-size: 0.85rem; color: #4a6272;">Переходя по ссылкам, вы поддерживаете наш проект — мы получаем небольшую комиссию</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container form-box">
+            <h3 style="font-size: 1.8rem;">📬 Больше кэшбэка и обзоров</h3>
+            <p style="margin-top: 12px;">Подпишитесь — пришлем дайджест «Топ умных устройств» и персональную скидку 5% на первый заказ.</p>
+            <div class="form-group">
+                <input type="email" placeholder="Ваш e-mail" id="emailInput">
+                <button type="button" id="subscribeBtn">Подписаться</button>
+            </div>
+            <p style="font-size: 0.8rem; margin-top: 18px;">Никакого спама, только выгодные предложения.</p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>© 2026 SmartHomeHub — агрегатор умных устройств. Сайт использует партнерские ссылки (мы получаем комиссию за покупки).</p>
+        <p style="margin-top: 12px;">✨ Энергоэффективность начинается здесь</p>
+    </div>
+</footer>
+
+<script>
+    document.getElementById('subscribeBtn').addEventListener('click', function() {
+        const email = document.getElementById('emailInput').value.trim();
+        if(email === "" || !email.includes("@")) {
+            alert("Пожалуйста, введите корректный email, чтобы получать лучшие предложения!");
+            return;
+        }
+        alert("✅ Спасибо! Вы подписаны на дайджест умного дома.");
+        document.getElementById('emailInput').value = "";
+    });
+
+    const allAffLinks = document.querySelectorAll('.aff-link');
+    allAffLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            console.log('Клик по партнёрской ссылке, товар:', this.innerText);
+        });
+    });
+</script>
+</body>
+</html>
